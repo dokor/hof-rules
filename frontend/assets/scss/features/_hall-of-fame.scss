@@ -1,31 +1,36 @@
-.hof-seasons {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+.hof-page {
+  height: 100%;
+  overflow: auto;
 
-  .hof-season {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    margin: 1rem;
-  }
-}
-
-.user-tile {
-  margin: 2rem 1rem;
-  display: flex;
-  flex-direction: column;
-
-  .user-tile-title {
-    display: flex;
-  }
-
-  .user-tile-sub-title {
+  .hof-seasons {
     display: flex;
     flex-direction: row;
+    justify-content: center;
 
-    div {
-      margin-right: 1rem;
+    .hof-season {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      margin: 1rem;
+    }
+  }
+
+  .user-tile {
+    margin: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+
+    .user-tile-title {
+      display: flex;
+    }
+
+    .user-tile-sub-title {
+      display: flex;
+      flex-direction: row;
+
+      div {
+        margin-right: 1rem;
+      }
     }
   }
 }
