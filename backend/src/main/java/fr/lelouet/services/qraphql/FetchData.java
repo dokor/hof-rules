@@ -36,6 +36,7 @@ public class FetchData {
     }
 
     public List<UserScore> fetch(RulesSaison saison) {
+        logger.info("Debut récupération [{}]", saison);
         List<UserScore> scores = new ArrayList<>();
         String data = getData(saison, null);
         while (scores.size() < 500) {

@@ -16,14 +16,13 @@ public class ScoresService {
     private static final Logger logger = LoggerFactory.getLogger(ScoresService.class);
 
 
-    private final Map<RulesSaison, List<UserScore>> cachedScores;
+    private Map<RulesSaison, List<UserScore>> cachedScores = new HashMap<>();
     private final QraphqlApi graphQLApi;
 
     @Inject
     private ScoresService(
         QraphqlApi graphQLApi
     ) {
-        this.cachedScores = new HashMap<>();
         this.graphQLApi = graphQLApi;
     }
 
@@ -35,6 +34,7 @@ public class ScoresService {
         map.put(RulesSaison.C_SCORE_SEASON_1, firstSaison);
         map.put(RulesSaison.C_SCORE_SEASON_2, secondSaison);
         logger.info("Scores cache initialized");
+        this.cachedScores = map;
         return map;
     }
 
@@ -44,7 +44,7 @@ public class ScoresService {
 
     public List<UserScore> getScores(RulesSaison saison) {
         // TODO : modifier l'appel et l'objet pour renvoyer une map<Position, UserScore>
-        return cachedScores.get(saison);
+        return this.cachedScores.get(saison);
     }
 
     public void refresh() {
