@@ -1,6 +1,10 @@
 .hof-page {
   height: 100%;
   overflow: auto;
+  background-attachment: fixed;
+  background-color: #0d1114;
+  background-image: linear-gradient(180deg, #9f04dc15, #9f04dc00 300px);
+  color: #fff;
 
   .hof-seasons {
     display: flex;
@@ -13,7 +17,7 @@
       justify-content: flex-start;
       margin: 1rem;
 
-      h1{
+      h1 {
         text-align: center;
       }
     }

@@ -10,7 +10,7 @@ import ConditionalRoute from './theme/routes/ConditionalRoute';
 import Login from './features/login/Login';
 import GlobalErrorBoundary from './theme/GlobalErrorBoundary';
 import SessionService from '../services/session/SessionService';
-import HallOfFamePage from './features/hall-of-fames/HallOfFamePage';
+import HallOfFamePage from './features/hall-of-fame/HallOfFamePage';
 
 const logger = new Logger('App');
 // To make the application have a base path that starts with /admin:
