@@ -3,6 +3,7 @@ package fr.lelouet;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
+import fr.lelouet.services.scheduler.ScheduledJobs;
 import fr.lelouet.services.scores.ScoresService;
 import org.glassfish.grizzly.GrizzlyFuture;
 import org.glassfish.grizzly.http.server.HttpServer;
@@ -63,6 +64,7 @@ public class WebApplication {
 
 	private static void initializeData(Injector injector) {
 		injector.getInstance(ScoresService.class).initializeCache();
+		injector.getInstance(ScheduledJobs.class).scheduleJobs();
 	}
 
 	private static void addShutDownListener(HttpServer httpServer) { // If scheduler is used, add arg: Scheduler scheduler
