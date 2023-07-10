@@ -28,7 +28,7 @@ public class FetchData {
     private static final Logger logger = LoggerFactory.getLogger(FetchData.class);
 
     private static final String URL = "https://api.rules.art/graphql";
-    private static final Integer TOP = 500;
+    private static final Integer TOP = 2000;
 
     @Inject
     public FetchData() {
@@ -39,7 +39,7 @@ public class FetchData {
         logger.info("Debut récupération [{}]", saison);
         List<UserScore> scores = new ArrayList<>();
         String data = getData(saison, null);
-        while (scores.size() < 500) {
+        while (scores.size() < TOP) {
             String response = sendRequest(URL, data);
 
             if (response != null) {
