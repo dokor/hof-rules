@@ -4,9 +4,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import fr.lelouet.services.scores.Profile;
-import fr.lelouet.services.scores.RulesSaison;
-import fr.lelouet.services.scores.UserScore;
+import fr.lelouet.services.scores.beans.Profile;
+import fr.lelouet.services.scores.enums.RulesSaison;
+import fr.lelouet.services.scores.beans.UserScore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

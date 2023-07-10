@@ -1,4 +1,4 @@
-package fr.lelouet.services.scores;
+package fr.lelouet.services.scores.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

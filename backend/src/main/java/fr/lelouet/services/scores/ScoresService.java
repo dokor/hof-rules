@@ -1,6 +1,8 @@
 package fr.lelouet.services.scores;
 
 import fr.lelouet.services.qraphql.QraphqlApi;
+import fr.lelouet.services.scores.beans.UserScore;
+import fr.lelouet.services.scores.enums.RulesSaison;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

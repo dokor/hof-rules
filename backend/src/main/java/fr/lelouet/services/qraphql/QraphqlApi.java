@@ -1,9 +1,8 @@
 package fr.lelouet.services.qraphql;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.lelouet.services.scores.Profile;
-import fr.lelouet.services.scores.RulesSaison;
-import fr.lelouet.services.scores.UserScore;
+import fr.lelouet.services.scores.enums.RulesSaison;
+import fr.lelouet.services.scores.beans.UserScore;
 
 import java.util.Collections;
 

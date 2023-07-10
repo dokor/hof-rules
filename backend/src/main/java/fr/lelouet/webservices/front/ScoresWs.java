@@ -1,9 +1,9 @@
 package fr.lelouet.webservices.front;
 
 import com.coreoz.plume.jersey.security.permission.PublicApi;
-import fr.lelouet.services.scores.RulesSaison;
+import fr.lelouet.services.scores.enums.RulesSaison;
 import fr.lelouet.services.scores.ScoresService;
-import fr.lelouet.services.scores.UserScore;
+import fr.lelouet.services.scores.beans.UserScore;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

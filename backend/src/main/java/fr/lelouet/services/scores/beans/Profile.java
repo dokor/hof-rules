@@ -1,4 +1,4 @@
-package fr.lelouet.services.scores;
+package fr.lelouet.services.scores.beans;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
