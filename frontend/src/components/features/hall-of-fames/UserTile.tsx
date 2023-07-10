@@ -8,10 +8,13 @@ type Props = {
 export default function UserTile({ userProfile }: Props) {
   return (
     <div className="user-tile">
-      <div>{userProfile.username}</div>
-      <div>{userProfile.slug}</div>
-      <div>{userProfile.rank}</div>
-      <div>{userProfile.cscore}</div>
+      <div className="user-tile-title">
+        <div>{userProfile.rank}éme</div>
+      </div>
+      <div className="user-tile-sub-title">
+        <div>{userProfile.username}</div>
+        <div>Score : {userProfile.cscore}</div>
+      </div>
     </div>
   );
 }

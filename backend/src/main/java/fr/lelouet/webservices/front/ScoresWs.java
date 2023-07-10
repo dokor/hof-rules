@@ -43,7 +43,7 @@ public class ScoresWs {
         // todo : validator season
         if (season != null) {
             RulesSaison rulesSaison = RulesSaison.valueOf(season);
-            return scoresService.getMockedScores(rulesSaison);
+            return scoresService.getScores(rulesSaison);
         }
         throw new RuntimeException("NO SEASON"); // todo : exception
     }

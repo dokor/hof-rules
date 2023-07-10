@@ -5,52 +5,39 @@ import fr.lelouet.services.scores.Profile;
 import fr.lelouet.services.scores.RulesSaison;
 import fr.lelouet.services.scores.UserScore;
 
+import java.util.Collections;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.List;
-import java.util.Objects;
 
 @Singleton
 public class QraphqlApi {
 
+    private static final Logger logger = LoggerFactory.getLogger(QraphqlApi.class);
+
     private final ObjectMapper objectMapper;
+    private final FetchData fetchData;
+
+    private static final String url = "https://api.rules.art/graphql";
 
     @Inject
-    private QraphqlApi(ObjectMapper objectMapper) {
+    private QraphqlApi(
+        ObjectMapper objectMapper,
+        FetchData fetchData
+    ) {
         this.objectMapper = objectMapper;
+        this.fetchData = fetchData;
+
     }
 
     public List<UserScore> fetchScores(RulesSaison season) {
-        // TODO
         if (season == null) {
-            return null;
+            return Collections.emptyList();
         }
-        UserScore userScore = new UserScore(
-            "username",
-            "slug",
-            "cScore",
-            "rank",
-            new Profile(
-                "username",
-                "slug"
-            )
-        );
-        return List.of(
-            userScore,
-            userScore,
-            userScore,
-            userScore,
-            userScore,
-            userScore,
-            userScore,
-            userScore,
-            userScore,
-            userScore,
-            userScore,
-            userScore,
-            userScore,
-            userScore,
-            userScore
-        );
+        return this.fetchData.fetch(season);
     }
 }

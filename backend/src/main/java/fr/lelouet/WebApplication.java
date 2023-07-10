@@ -3,6 +3,7 @@ package fr.lelouet;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
+import fr.lelouet.services.scores.ScoresService;
 import org.glassfish.grizzly.GrizzlyFuture;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -45,6 +46,8 @@ public class WebApplication {
 
 			// Add a shutdown hook to execute some code when the JVM receive a kill signal before it stops
 			addShutDownListener(httpServer);
+			initializeData(injector);
+
 			// If Plume Scheduler / Wisp is used, uncomment next line
 			// addShutDownListerner(httpServer, injector.getInstance(Scheduler.class));
 
@@ -56,6 +59,10 @@ public class WebApplication {
 			// Stopping the JVM is important to enable production supervision tools to detect and restart the project.
 			System.exit(1);
 		}
+	}
+
+	private static void initializeData(Injector injector) {
+		injector.getInstance(ScoresService.class).initializeCache();
 	}
 
 	private static void addShutDownListener(HttpServer httpServer) { // If scheduler is used, add arg: Scheduler scheduler

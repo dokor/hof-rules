@@ -1,23 +1,31 @@
 import { getGlobalInstance } from 'plume-ts-di';
 import React, { useState } from 'react';
-import ScoresService from '../../../services/scores/ScoresService';
+import ScoresService, { Season } from '../../../services/scores/ScoresService';
 import { UserProfile } from '../../../api/scores/ScoresApi';
 import UserTile from "./UserTile";
+import { useObservable } from 'micro-observables';
 
 export default function HallOfFamePage() {
   const scoresService = getGlobalInstance(ScoresService);
-
-  const [scores, setScores] = useState([]);
-
-  scoresService.fetchScores()
-    .then((json: UserProfile[]) => setScores(json))
-    .catch((error: any) => console.log(error));
+  const firstSeason = useObservable(scoresService.fetchScores(Season.C_SCORE_SEASON_1));
+  const secondSeason = useObservable(scoresService.fetchScores(Season.C_SCORE_SEASON_2));
 
   return (
-    <div className="login-layout">
-      <button onClick={() => scoresService.refresh()}>Refresh</button>
-      <div>
-        {scores.map((userProfile: UserProfile) => <UserTile userProfile={userProfile} />}
+    <div className="hof-page">
+      <button onClick={() => scoresService.refresh()}>Refresh ALL</button>
+      <div className="hof-seasons">
+        <div className="hof-season">
+          <h1>Saison 1</h1>
+          <div>
+            {firstSeason.map((userProfile: UserProfile) => <UserTile userProfile={userProfile} />}
+          </div>
+        </div>
+        <div className="hof-season">
+          <h1>Saison 2</h1>
+          <div>
+            {secondSeason.map((userProfile: UserProfile) => <UserTile userProfile={userProfile} />}
+          </div>
+        </div>
       </div>
     </div>
   );
