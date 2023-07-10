@@ -18,23 +18,4 @@
       }
     }
   }
-
-  .user-tile {
-    margin: 2rem 1rem;
-    display: flex;
-    flex-direction: column;
-
-    .user-tile-title {
-      display: flex;
-    }
-
-    .user-tile-sub-title {
-      display: flex;
-      flex-direction: row;
-
-      div {
-        margin-right: 1rem;
-      }
-    }
-  }
 }
