@@ -10,6 +10,7 @@ import ConditionalRoute from './theme/routes/ConditionalRoute';
 import Login from './features/login/Login';
 import GlobalErrorBoundary from './theme/GlobalErrorBoundary';
 import SessionService from '../services/session/SessionService';
+import HallOfFamePage from './features/hall-of-fames/HallOfFamePage';
 
 const logger = new Logger('App');
 // To make the application have a base path that starts with /admin:
@@ -23,31 +24,16 @@ if (window && !window.location.pathname.startsWith(basePath)) {
 }
 
 export default function App() {
-  const sessionService = getGlobalInstance(SessionService);
 
   logger.info('Render App');
   return (
-      <GlobalErrorBoundary>
-        <ToastContainer />
-        <BrowserRouter basename={basePath}>
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route
-              path="/*"
-              element={(
-                <ConditionalRoute shouldDisplayRoute={sessionService.isAuthenticated()} defaultRoute="/login">
-                  <div id="main-layout">
-                    <Navigation />
-                    <div id="content-layout">
-                      <Header />
-                      <Router />
-                    </div>
-                  </div>
-                </ConditionalRoute>
-              )}
-            />
-          </Routes>
-        </BrowserRouter>
-      </GlobalErrorBoundary>
+    <GlobalErrorBoundary>
+      <ToastContainer />
+      <BrowserRouter basename={basePath}>
+        <Routes>
+          <Route path="*" element={<HallOfFamePage />} />
+        </Routes>
+      </BrowserRouter>
+    </GlobalErrorBoundary>
   );
 }

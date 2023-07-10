@@ -8,6 +8,7 @@ import BrowserUserActivityListener from '../lib/user-session/user-activity/Brows
 import ObservableNotificationEngine from '../lib/plume-notification/ObservableNotificationEngine';
 import UserActivityListener from '../lib/user-session/user-activity/UserActivityListener';
 import NotificationEngine from '../lib/plume-notification/NotificationEngine';
+import ScoresService from './scores/ScoresService';
 
 export default function installServicesModule(injector: Injector) {
   // browser dependent services
@@ -19,4 +20,6 @@ export default function installServicesModule(injector: Injector) {
   injector.registerSingleton(ObservableNotificationEngine);
   injector.registerSingleton(ObservableNotificationEngine, NotificationEngine);
   injector.registerSingleton(Scheduler);
+
+  injector.registerSingleton(ScoresService);
 }
