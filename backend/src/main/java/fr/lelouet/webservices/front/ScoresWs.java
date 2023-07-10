@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -36,7 +37,7 @@ public class ScoresWs {
     }
 
     @GET
-    @Path("/{season}")
+    @Path("/season/{season}")
     @Operation(description = "Get top 500 by season")
     public List<UserScore> test(@Parameter(required = true) @PathParam("season") String season) {
         // todo : validator season
@@ -45,5 +46,12 @@ public class ScoresWs {
             return scoresService.getMockedScores(rulesSaison);
         }
         throw new RuntimeException("NO SEASON"); // todo : exception
+    }
+
+    @POST
+    @Path("/refresh")
+    @Operation(description = "Refresh all Seasons")
+    public void test() {
+        scoresService.refresh();
     }
 }

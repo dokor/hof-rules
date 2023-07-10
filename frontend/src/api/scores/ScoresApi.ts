@@ -10,7 +10,7 @@ export type UserProfile = {
   username: string;
   rank: string;
   slug: string;
-}
+};
 export default class ScoresApi {
   constructor(
     private readonly httpClient: ApiHttpClient,
@@ -20,7 +20,14 @@ export default class ScoresApi {
   fetchScores(season: string) {
     return this
       .httpClient
-      .restRequest<UserProfile[]>(HttpMethod.GET, `/scores/${season}`)
+      .restRequest<UserProfile[]>(HttpMethod.GET, `/scores/season/${season}`)
+      .execute();
+  }
+
+  refresh() {
+    return this
+      .httpClient
+      .restRequest<void>(HttpMethod.POST, '/scores/refresh')
       .execute();
   }
 }

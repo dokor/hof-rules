@@ -15,7 +15,10 @@ export default function HallOfFamePage() {
 
   return (
     <div className="login-layout">
-      {scores.map((userProfile: UserProfile) => <UserTile userProfile={userProfile} />}
+      <button onClick={() => scoresService.refresh()}>Refresh</button>
+      <div>
+        {scores.map((userProfile: UserProfile) => <UserTile userProfile={userProfile} />}
+      </div>
     </div>
   );
 }

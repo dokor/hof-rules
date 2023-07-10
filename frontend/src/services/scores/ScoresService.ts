@@ -10,4 +10,8 @@ export default class ScoresService {
   fetchScores() {
     return this.scoresApi.fetchScores('C_SCORE_SEASON_1');
   }
+
+  refresh() {
+    return this.scoresApi.refresh();
+  }
 }

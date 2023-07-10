@@ -39,4 +39,8 @@ public class ScoresService {
         // TODO : modifier l'appel et l'objet pour renvoyer une map<Position, UserScore>
         return graphQLApi.fetchScores(saison);
     }
+
+    public void refresh() {
+        this.initializeCache();
+    }
 }
