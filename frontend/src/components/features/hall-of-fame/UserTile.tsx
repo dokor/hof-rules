@@ -10,7 +10,6 @@ const URSER_URL_RULES = 'https://rules.art/user/';
 
 const computeUsername = (fallbackUrl: string, username: string, slug: string) =>
 // todo : refacto le compute et le css pour afficher l'image du user en passant par pictureUrl ou fallbackUrl dans IMG
-// todo : virer le css du <a>
 // if (!!fallbackUrl && fallbackUrl !== '') {
      <div><a href={URSER_URL_RULES + slug} target="_blank">{username}</a></div>
 // }
