@@ -29,10 +29,13 @@ public class FetchData {
 
     private static final String URL = "https://api.rules.art/graphql";
     private static final Integer TOP = 2000;
+    private final QraphQLQueryBuilder qraphQLQueryBuilder;
 
     @Inject
-    public FetchData() {
-
+    public FetchData(
+        QraphQLQueryBuilder qraphQLQueryBuilder
+    ) {
+        this.qraphQLQueryBuilder = qraphQLQueryBuilder;
     }
 
     public List<UserScore> fetch(RulesSaison saison) {
@@ -73,55 +76,11 @@ public class FetchData {
         return scores;
     }
 
-    private static String getData(RulesSaison saison, String endCursor) {
+    private String getData(RulesSaison saison, String endCursor) {
         if (endCursor != null) {
-            return "{\"operationName\":\"HallOfFame\"," +
-                "\"variables\":{\"season\":" + saison.getSaison() + ",\"after\":\"" + endCursor + "\",\"sort\":{\"type\":\"" + saison.name() + "\",\"direction\":\"DESC\"}}" +
-                ",\"query\":\"query HallOfFame($season: Int!, $sort: UsersSortInput!, $after: String, $first: Int) {\\n" +
-                "  users(sort: $sort, after: $after, first: $first) {\\n" +
-                "    pageInfo {\\n" +
-                "      endCursor\\n" +
-                "      hasNextPage\\n" +
-                "      __typename\\n" +
-                "    }\\n" +
-                "    edges {\\n" +
-                "      node {\\n" +
-                "        username\\n" +
-                "        slug\\n" +
-                "        cScore(season: $season)\\n" +
-                "        rank(season: $season)\\n" +
-                "     __typename\\n" +
-                "      }\\n" +
-                "      __typename\\n" +
-                "    }\\n" +
-                "    __typename\\n" +
-                "  }\\n" +
-                "}\\n" +
-                "\"}";
+            return this.qraphQLQueryBuilder.buildNextUserQuery(saison, endCursor);
         }
-        return "{\"operationName\":\"HallOfFame\"," +
-            "\"variables\":{\"season\":" + saison.getSaison() + ",\"first\":" + TOP + ",\"sort\":{\"type\":\"" + saison.name() + "\",\"direction\":\"DESC\"}}" +
-            ",\"query\":\"query HallOfFame($season: Int!, $sort: UsersSortInput!, $after: String, $first: Int) {\\n" +
-            "  users(sort: $sort, after: $after, first: $first) {\\n" +
-            "    pageInfo {\\n" +
-            "      endCursor\\n" +
-            "      hasNextPage\\n" +
-            "      __typename\\n" +
-            "    }\\n" +
-            "    edges {\\n" +
-            "      node {\\n" +
-            "        username\\n" +
-            "        slug\\n" +
-            "        cScore(season: $season)\\n" +
-            "        rank(season: $season)\\n" +
-            "     __typename\\n" +
-            "      }\\n" +
-            "      __typename\\n" +
-            "    }\\n" +
-            "    __typename\\n" +
-            "  }\\n" +
-            "}\\n" +
-            "\"}";
+        return this.qraphQLQueryBuilder.buildFirstUserQuery(saison, TOP);
     }
 
     private static List<UserScore> extractList(JsonArray edges) {
