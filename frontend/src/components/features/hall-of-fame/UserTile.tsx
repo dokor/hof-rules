@@ -8,14 +8,14 @@ type Props = {
 
 const URSER_URL_RULES = 'https://rules.art/user/';
 
-const computeUsername = (fallbackUrl: string, username: string, slug: string) =>
-// todo : refacto le compute et le css pour afficher l'image du user en passant par pictureUrl ou fallbackUrl dans IMG
-// if (!!fallbackUrl && fallbackUrl !== '') {
-     <div><a href={URSER_URL_RULES + slug} target="_blank">{username}</a></div>
-// }
-// return <div>{username}</div>;
-;
-
+const computeUsername = (pictureUrl: string, fallbackUrl: string, username: string, slug: string) => (
+  <div>
+    <img width={25} height={25}
+         src={pictureUrl}
+         onError={() => `this.onerror=null;this.src=${fallbackUrl}`}
+    />
+    <a href={URSER_URL_RULES + slug} target="_blank" rel="noreferrer">{username}</a>
+  </div>);
 export default function UserTile({ userProfile }: Props) {
   return (
     <div className="user-tile">
@@ -23,7 +23,12 @@ export default function UserTile({ userProfile }: Props) {
         <RankTile rank={userProfile.rank} />
       </div>
       <div className="user-tile-sub-title">
-        {computeUsername(userProfile.profile.fallbackUrl, userProfile.username, userProfile.slug)}
+        {computeUsername(
+          userProfile.profile.pictureUrl,
+          userProfile.profile.fallbackUrl,
+          userProfile.username,
+          userProfile.slug,
+        )}
         <div>Score : {userProfile.cscore}</div>
       </div>
     </div>

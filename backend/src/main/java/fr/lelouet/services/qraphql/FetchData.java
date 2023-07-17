@@ -77,9 +77,11 @@ public class FetchData {
     }
 
     private String getData(RulesSaison saison, String endCursor) {
+        // Aprés la premiere requete, on utilise le endCursor pour fetch la page suivante et continuer la pagination
         if (endCursor != null) {
             return this.qraphQLQueryBuilder.buildNextUserQuery(saison, endCursor);
         }
+        // Premiere requete vers grapQL
         return this.qraphQLQueryBuilder.buildFirstUserQuery(saison, TOP);
     }
 
@@ -98,14 +100,17 @@ public class FetchData {
         String slug = node.get("slug").getAsString();
         String cScore = node.get("cScore").getAsString();
         String rank = node.get("rank").getAsString();
+        JsonObject profile = node.get("profile").getAsJsonObject();
+        String pictureUrl = profile.get("pictureUrl").getAsString();
+        String fallbackUrl = profile.get("fallbackUrl").getAsString();
         return new UserScore(
             username,
             slug,
             cScore,
             rank,
             new Profile(
-                null,
-                null
+                pictureUrl,
+                fallbackUrl
             )
         );
     }
