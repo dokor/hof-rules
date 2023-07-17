@@ -104,8 +104,8 @@ public class FetchData {
             cScore,
             rank,
             new Profile(
-                "pictureUrL",
-                "fallbackUrl"
+                null,
+                null
             )
         );
     }
