@@ -17,13 +17,25 @@ export default function HallOfFamePage() {
         <div className="hof-season">
           <h1>Saison 1</h1>
           <div>
-            {firstSeason?.map((userProfile: UserProfile) => <UserTile userProfile={userProfile} />}
+            {
+              firstSeason && firstSeason?.map(
+                (userProfile: UserProfile) => {
+                  return (<UserTile userProfile={userProfile} />)
+                }
+              )
+            }
           </div>
         </div>
         <div className="hof-season">
           <h1>Saison 2</h1>
           <div>
-            {secondSeason?.map((userProfile: UserProfile) => <UserTile userProfile={userProfile} />}
+            {
+              secondSeason && secondSeason?.map(
+                (userProfile: UserProfile) => {
+                  return (<UserTile userProfile={userProfile} />)
+                }
+              )
+            }
           </div>
         </div>
       </div>
