@@ -17,20 +17,13 @@ import java.util.List;
 public class QraphqlApi {
 
     private static final Logger logger = LoggerFactory.getLogger(QraphqlApi.class);
-
-    private final ObjectMapper objectMapper;
     private final FetchData fetchData;
-
-    private static final String url = "https://api.rules.art/graphql";
 
     @Inject
     private QraphqlApi(
-        ObjectMapper objectMapper,
         FetchData fetchData
     ) {
-        this.objectMapper = objectMapper;
         this.fetchData = fetchData;
-
     }
 
     public List<UserScore> fetchScores(RulesSaison season) {
