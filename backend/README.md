@@ -1,6 +1,8 @@
 hof-rules-backend
 =============
 
+assembly:single 
+
 Launching the server
 --------------------
 Just run the `fr.lelouet.WebApplication` class, you can then open your browser to <http://localhost:8080>.
