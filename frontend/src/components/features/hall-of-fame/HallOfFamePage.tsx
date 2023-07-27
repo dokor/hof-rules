@@ -1,5 +1,5 @@
 import { getGlobalInstance } from 'plume-ts-di';
-import React, { useState } from 'react';
+import React from 'react';
 import ScoresService, { Season } from '../../../services/scores/ScoresService';
 import { UserProfile } from '../../../api/scores/ScoresApi';
 import UserTile from "./UserTile";
@@ -20,7 +20,12 @@ export default function HallOfFamePage() {
             {
               firstSeason && firstSeason?.map(
                 (userProfile: UserProfile) => {
-                  return (<UserTile userProfile={userProfile} />)
+                  return (
+                      <UserTile
+                          key={`firstSeason-${userProfile.slug}`}
+                          userProfile={userProfile}
+                      />
+                  )
                 }
               )
             }
@@ -32,7 +37,7 @@ export default function HallOfFamePage() {
             {
               secondSeason && secondSeason?.map(
                 (userProfile: UserProfile) => {
-                  return (<UserTile userProfile={userProfile} />)
+                  return (<UserTile  key={`secondSeason-${userProfile.slug}`} userProfile={userProfile} />)
                 }
               )
             }
