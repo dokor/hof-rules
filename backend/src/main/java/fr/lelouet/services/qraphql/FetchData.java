@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import fr.lelouet.services.configuration.ConfigurationService;
 import fr.lelouet.services.scores.beans.Profile;
 import fr.lelouet.services.scores.enums.RulesSaison;
 import fr.lelouet.services.scores.beans.UserScore;
@@ -28,13 +29,14 @@ public class FetchData {
     private static final Logger logger = LoggerFactory.getLogger(FetchData.class);
 
     private static final String URL = "https://api.rules.art/graphql";
-    private static final Integer TOP = 2000;
+    private final Integer TOP;
     private final QraphQLQueryBuilder qraphQLQueryBuilder;
-
     @Inject
     public FetchData(
+       ConfigurationService configurationService,
         QraphQLQueryBuilder qraphQLQueryBuilder
     ) {
+        this.TOP = configurationService.getNumberOfUsersShow();
         this.qraphQLQueryBuilder = qraphQLQueryBuilder;
     }
 

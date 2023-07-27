@@ -27,5 +27,8 @@ public class ConfigurationService {
 		return config.getString("swagger.access.password");
 	}
 
+    public Integer getNumberOfUsersShow() {
+		return config.getInt("show.number-of-users");
+    }
 }
 
