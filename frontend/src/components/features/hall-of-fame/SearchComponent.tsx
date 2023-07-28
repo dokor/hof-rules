@@ -20,8 +20,8 @@ export default function SearchComponent() {
       <div>
         <input type="text" placeholder="Search for a user" onChange={(e) => userRank(e.target.value)} />
       </div>
-      {userProfileFirst ? <UserTile userProfile={userProfileFirst} /> : <div>NOT FOUND</div>}
-      {userProfileSecond ? <UserTile userProfile={userProfileSecond} /> : <div>NOT FOUND</div>}
+      {userProfileFirst ? <UserTile userProfile={userProfileFirst} /> : <></>}
+      {userProfileSecond ? <UserTile userProfile={userProfileSecond} /> : <></>}
     </div>
   );
 }
