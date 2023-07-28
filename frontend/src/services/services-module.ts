@@ -10,6 +10,7 @@ import UserActivityListener from '../lib/user-session/user-activity/UserActivity
 import NotificationEngine from '../lib/plume-notification/NotificationEngine';
 import ScoresService from './scores/ScoresService';
 import SearchService from './search/SearchService';
+import GasService from './blockchain/GasService';
 
 export default function installServicesModule(injector: Injector) {
   // browser dependent services
@@ -26,4 +27,6 @@ export default function installServicesModule(injector: Injector) {
   // metier
   injector.registerSingleton(ScoresService);
   injector.registerSingleton(SearchService);
+
+  injector.registerSingleton(GasService);
 }
