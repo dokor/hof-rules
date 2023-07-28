@@ -1,10 +1,6 @@
 import { observable, WritableObservable } from 'micro-observables';
 import ScoresApi, { UserProfile } from '../../api/scores/ScoresApi';
-
-export enum Season {
-  C_SCORE_SEASON_1 = 'C_SCORE_SEASON_1',
-  C_SCORE_SEASON_2 = 'C_SCORE_SEASON_2',
-}
+import Season from '../../api/scores/types/Season';
 
 export default class ScoresService {
   private readonly firstSeasonScores: WritableObservable<UserProfile[]>;
