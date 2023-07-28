@@ -1,8 +1,8 @@
-import {getGlobalInstance} from 'plume-ts-di';
+import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
-import ScoresService, {Season} from '../../../services/scores/ScoresService';
-import SeasonList from "./SeasonList";
-import SearchComponent from "./SearchComponent";
+import ScoresService, { Season } from '../../../services/scores/ScoresService';
+import SeasonList from './SeasonList';
+import SearchComponent from './SearchComponent';
 
 export default function HallOfFamePage() {
   const scoresService = getGlobalInstance(ScoresService);

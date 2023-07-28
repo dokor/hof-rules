@@ -9,17 +9,21 @@ import ObservableNotificationEngine from '../lib/plume-notification/ObservableNo
 import UserActivityListener from '../lib/user-session/user-activity/UserActivityListener';
 import NotificationEngine from '../lib/plume-notification/NotificationEngine';
 import ScoresService from './scores/ScoresService';
+import SearchService from './search/SearchService';
 
 export default function installServicesModule(injector: Injector) {
   // browser dependent services
   injector.registerSingleton(BrowserPageActivityManager, PageActivityManager);
   injector.registerSingleton(BrowserUserActivityListener, UserActivityListener);
-  // other services
+
+  // internal services
   injector.registerSingleton(IdlenessDetector);
   injector.registerSingleton(SessionService);
   injector.registerSingleton(ObservableNotificationEngine);
   injector.registerSingleton(ObservableNotificationEngine, NotificationEngine);
   injector.registerSingleton(Scheduler);
 
+  // metier
   injector.registerSingleton(ScoresService);
+  injector.registerSingleton(SearchService);
 }

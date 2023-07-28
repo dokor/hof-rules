@@ -29,6 +29,7 @@
   "devDependencies": {
     "@types/enzyme": "^3.10.12",
     "@types/jest": "^29.1.2",
+    "@types/node": "^16.11.7",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "@types/react-router": "^5.1.19",
@@ -66,7 +67,12 @@
     "ts-transformer-classname": "^2.0.0",
     "ttypescript": "^1.5.15",
     "typescript": "4.9.4",
-    "vite": "^4.0.3"
+    "vite": "^4.0.3",
+    "vite-tsconfig-paths": "^3.3.13"
+  },
+  "resolutions": {
+    "@types/react": "17.0.14",
+    "@types/react-dom": "17.0.14"
   },
   "browserslist": [
     "defaults",
