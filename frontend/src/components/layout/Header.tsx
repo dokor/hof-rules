@@ -35,10 +35,10 @@ export default function Header() {
           <Prices />
         </div>
         <div className="header_action">
-          <button onClick={() => scoresService.refresh()}>Refresh ALL</button>
+          <SearchComponent />
         </div>
         <div className="header_action">
-          <SearchComponent />
+          <button onClick={() => scoresService.refresh()}>Refresh ALL</button>
         </div>
       </div>
     </header>
