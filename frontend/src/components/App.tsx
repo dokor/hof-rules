@@ -2,14 +2,8 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { Logger } from 'simple-logging-system';
-import { getGlobalInstance } from 'plume-ts-di';
-import Router from './layout/Router';
 import Header from './layout/Header';
-import Navigation from './navigation/Navigation';
-import ConditionalRoute from './theme/routes/ConditionalRoute';
-import Login from './features/login/Login';
 import GlobalErrorBoundary from './theme/GlobalErrorBoundary';
-import SessionService from '../services/session/SessionService';
 import HallOfFamePage from './features/hall-of-fame/HallOfFamePage';
 import SearchHeader from './layout/SearchHeader';
 
@@ -25,7 +19,6 @@ if (window && !window.location.pathname.startsWith(basePath)) {
 }
 
 export default function App() {
-
   logger.info('Render App');
   return (
     <GlobalErrorBoundary>

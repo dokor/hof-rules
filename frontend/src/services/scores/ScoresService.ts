@@ -10,7 +10,6 @@ export default class ScoresService {
   constructor(
     private readonly scoresApi: ScoresApi,
   ) {
-    // will first, try to load from local storage.
     this.firstSeasonScores = observable([]);
     this.secondSesonScores = observable([]);
     this.init(Season.C_SCORE_SEASON_1);
@@ -43,14 +42,14 @@ export default class ScoresService {
 
   getUserRank(slug: string, season: Season): UserProfile | undefined {
     if (season === Season.C_SCORE_SEASON_1) {
-      const firstSeason = this.firstSeasonScores.get()
+      const firstSeason: UserProfile | undefined = this.firstSeasonScores.get()
         .find((user: UserProfile) => user.slug === slug || user.username === slug);
       if (firstSeason) {
         return firstSeason;
       }
     }
     if (season === Season.C_SCORE_SEASON_2) {
-      const secondSeason = this.secondSesonScores.get()
+      const secondSeason: UserProfile | undefined = this.secondSesonScores.get()
         .find((user: UserProfile) => user.slug === slug || user.username === slug);
       if (secondSeason) {
         return secondSeason;

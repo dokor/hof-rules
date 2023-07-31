@@ -42,7 +42,7 @@ export default function Prices() {
               {gasPrice && (<div>Achat : {calculateGasPrice(buyGasUsage)} €</div>)}
             </div>
         )
-          : (<div>Chargement...</div>)  // todo : gérer avec le loader de l'app
+          : (<div>Chargement...</div>) // todo : gérer avec le loader de l'app
       }
     </>
   );

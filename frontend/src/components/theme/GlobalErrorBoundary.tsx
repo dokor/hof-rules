@@ -40,7 +40,7 @@ export default class GlobalErrorBoundary
           <h2>Something went wrong.</h2>
           <div>You can try to reload the page, hopefully the bug will not occur again!</div>
           <details style={{ whiteSpace: 'pre-wrap' }}>
-            {error && error.toString()}
+            {error?.toString()}
             <br />
             {errorInfo.componentStack}
           </details>
