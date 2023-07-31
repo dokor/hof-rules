@@ -21,14 +21,15 @@ export default function SeasonList({ season }: Props) {
       <div>
         {
           seasonListOfUsers
-          && seasonListOfUsers?.map(
-            (userProfile: UserProfile) => (
-              <UserTile
-                key={`${season}-${userProfile.slug}`}
-                userProfile={userProfile}
-              />
-            ),
-          )
+            ? seasonListOfUsers?.map(
+              (userProfile: UserProfile) => (
+                <UserTile
+                  key={`${season}-${userProfile.slug}`}
+                  userProfile={userProfile}
+                />
+              ),
+            )
+            : <div>Chargement...</div>
         }
       </div>
     </div>

@@ -11,7 +11,7 @@
     flex-direction: row;
     justify-content: center;
     width: fit-content;
-    overflow: scroll;
+    overflow: auto;
 
     .hof-season {
       display: flex;
@@ -22,6 +22,9 @@
       h1 {
         text-align: center;
       }
+    }
+    .hof-season:first-child {
+      border-right: 1px solid #e3ebf2;
     }
   }
 }
