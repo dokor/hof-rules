@@ -5,9 +5,9 @@ export const sellGasUsage = 4987;
 export const buyGasUsage = 13682;
 
 export default class GasApi {
-  constructor(
-    private readonly httpClient: ApiHttpClient,
-  ) {
+
+  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
+  constructor() {
   }
 
   // eslint-disable-next-line class-methods-use-this
