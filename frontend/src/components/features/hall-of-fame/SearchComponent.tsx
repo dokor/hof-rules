@@ -26,27 +26,30 @@ export default function SearchComponent() {
       <div>
         <input type="text" placeholder="Search for a user" onChange={(e) => setInputText(e.target.value)} />
       </div>
-      <>
-        {userProfileFirst
-          ? <div>
-            <div>Season 1</div>
-            <UserTile userProfile={userProfileFirst} />
-          </div>
-          : (
-            <>
-              <Skeleton variant="rectangular" width={150} height={40} sx={{ bgcolor: 'grey.900' }} />
-              <br />
-            </>
-          )
-        }
-        {userProfileSecond
-          ? <div>
-            <div>Season 2</div>
-            <UserTile userProfile={userProfileSecond} />
-          </div>
-          : <Skeleton variant="rectangular" width={150} height={40} sx={{ bgcolor: 'grey.900' }} />
-        }
-      </>
+      {
+        inputText &&
+        <>
+          {userProfileFirst
+            ? <div>
+              <div>Season 1</div>
+              <UserTile userProfile={userProfileFirst} />
+            </div>
+            : (
+              <>
+                <Skeleton variant="rectangular" width={150} height={40} sx={{ bgcolor: 'grey.900' }} />
+                <br />
+              </>
+            )
+          }
+          {userProfileSecond
+            ? <div>
+              <div>Season 2</div>
+              <UserTile userProfile={userProfileSecond} />
+            </div>
+            : <Skeleton variant="rectangular" width={150} height={40} sx={{ bgcolor: 'grey.900' }} />
+          }
+        </>
+      }
     </>
   );
 }
