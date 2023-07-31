@@ -32,11 +32,18 @@ export default function Prices() {
   }
 
   return (
-    <div>
-      {gasPrice && ethPrice && (<div>Gas Envoie : {calculateGasPrice(giftGasUsage)} €</div>)}
-      {gasPrice && ethPrice && (<div>Gas Vente : {calculateGasPrice(sellGasUsage)} €</div>)}
-      {gasPrice && ethPrice && (<div>Gas Achat : {calculateGasPrice(buyGasUsage)} €</div>)}
-      {ethPrice && (<div>Eth : {cleanEthPrice(ethPrice)} €</div>)}
-    </div>
+    <>
+      {
+        ethPrice ? (
+            <div>
+              {(<div>Eth : {cleanEthPrice(ethPrice)} €</div>)}
+              {gasPrice && (<div>Echange : {calculateGasPrice(giftGasUsage)} €</div>)}
+              {gasPrice && (<div>Vente : {calculateGasPrice(sellGasUsage)} €</div>)}
+              {gasPrice && (<div>Achat : {calculateGasPrice(buyGasUsage)} €</div>)}
+            </div>
+        )
+          : (<div>Chargement...</div>)
+      }
+    </>
   );
 }

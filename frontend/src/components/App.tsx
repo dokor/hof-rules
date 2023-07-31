@@ -29,6 +29,7 @@ export default function App() {
   return (
     <GlobalErrorBoundary>
       <ToastContainer />
+      <Header />
       <BrowserRouter basename={basePath}>
         <Routes>
           <Route path="*" element={<HallOfFamePage />} />

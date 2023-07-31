@@ -5,12 +5,15 @@
   align-items: center;
   height: $height-header;
   border-bottom: $separator;
+  background: $background;
+  color: #e3ebf2;
 
   h1 {
     padding: $spacer-4 0;
     text-transform: uppercase;
     margin-left: $spacer-6;
     font-size: $font-size-large;
+    color: #e3ebf2;
   }
 
   .header_actions {
@@ -24,7 +27,7 @@
       height: 100%;
       padding: 0 $spacer-5;
       border-left: $separator;
-      color: $secondary-color;
+      //color: $secondary-color;
 
       button {
         font-size: $font-size-medium;

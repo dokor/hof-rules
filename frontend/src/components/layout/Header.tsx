@@ -7,6 +7,9 @@ import SessionService from '../../services/session/SessionService';
 import DropdownMenu from '../theme/DropdownMenu';
 import LocaleSelector from '../theme/LocaleSelector';
 import useMessages from '../../i18n/hooks/messagesHook';
+import Prices from "../features/hall-of-fame/Prices";
+import SearchComponent from "../features/hall-of-fame/SearchComponent";
+import ScoresService from '../../services/scores/ScoresService';
 
 function makeInitials(fullName?: string): string {
   if (!fullName) {
@@ -21,44 +24,22 @@ function makeInitials(fullName?: string): string {
   return initials;
 }
 
-function LocaleSelectorContainer() {
-  const localeService = getGlobalInstance(LocaleService);
-  const currentLocale = useObservable(localeService.getCurrentLocale());
-
-  return <LocaleSelector
-    currentLocale={currentLocale}
-    availableLocales={localeService.getAvailableLocales()}
-    onLocaleSelected={(newLocale) => localeService.setCurrentLocale(newLocale)}
-  />;
-}
-
 export default function Header() {
-  const sessionService = getGlobalInstance(SessionService);
-  const currentUser = useObservable(sessionService.getCurrentUser());
-  const { messages } = useMessages();
+  const scoresService = getGlobalInstance(ScoresService);
 
   return (
     <header id="main-header">
-      <h1 className="section_name">{messages.app.name}</h1>
+      <h1 className="section_name">Hof-rules by lelouet</h1>
       <div className="header_actions">
         <div className="header_action">
-          <LocaleSelectorContainer />
+          <Prices />
         </div>
-        {
-          currentUser
-          && (
-            <div className="header_action header_action--circle">
-              <DropdownMenu label={makeInitials(currentUser.fullName)} id="user-menu">
-                <div id="user-name">{currentUser.fullName}</div>
-                <MenuItem
-                  onClick={() => sessionService.disconnect()}
-                >
-                  {messages.action.disconnect}
-                </MenuItem>
-              </DropdownMenu>
-            </div>
-          )
-        }
+        <div className="header_action">
+          <button onClick={() => scoresService.refresh()}>Refresh ALL</button>
+        </div>
+        <div className="header_action">
+          <SearchComponent />
+        </div>
       </div>
     </header>
   );
