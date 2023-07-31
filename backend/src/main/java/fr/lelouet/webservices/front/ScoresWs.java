@@ -1,9 +1,11 @@
 package fr.lelouet.webservices.front;
 
+import com.coreoz.plume.jersey.errors.WsException;
 import com.coreoz.plume.jersey.security.permission.PublicApi;
 import fr.lelouet.services.scores.enums.RulesSaison;
 import fr.lelouet.services.scores.ScoresService;
 import fr.lelouet.services.scores.beans.UserScore;
+import fr.lelouet.webservices.internal.HofWsError;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -38,20 +40,27 @@ public class ScoresWs {
 
     @GET
     @Path("/season/{season}")
-    @Operation(description = "Get top 500 by season")
-    public List<UserScore> test(@Parameter(required = true) @PathParam("season") String season) {
-        // todo : validator season
-        if (season != null) {
-            RulesSaison rulesSaison = RulesSaison.valueOf(season);
-            return scoresService.getScores(rulesSaison);
-        }
-        throw new RuntimeException("NO SEASON"); // todo : exception
+    @Operation(description = "Get Scores by season")
+    public List<UserScore> get(@Parameter(required = true) @PathParam("season") String season) {
+        this.validateSeason(season);
+        RulesSaison rulesSaison = RulesSaison.valueOf(season);
+        return scoresService.getScores(rulesSaison);
     }
 
     @POST
     @Path("/refresh")
     @Operation(description = "Refresh all Seasons")
-    public void test() {
+    public void refreshSeasonsScores() {
         scoresService.refresh();
+    }
+
+    /**
+     * Validator for season
+     * @param season
+     */
+    private void validateSeason(String season) {
+        if (season == null) {
+            throw new WsException(HofWsError.NO_SEASON_SELECTED);
+        }
     }
 }
