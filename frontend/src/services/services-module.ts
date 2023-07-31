@@ -11,6 +11,7 @@ import NotificationEngine from '../lib/plume-notification/NotificationEngine';
 import ScoresService from './scores/ScoresService';
 import SearchService from './search/SearchService';
 import GasService from './blockchain/GasService';
+import EnvironmentService from './utils/EnvironmentService';
 
 export default function installServicesModule(injector: Injector) {
   // browser dependent services
@@ -23,6 +24,7 @@ export default function installServicesModule(injector: Injector) {
   injector.registerSingleton(ObservableNotificationEngine);
   injector.registerSingleton(ObservableNotificationEngine, NotificationEngine);
   injector.registerSingleton(Scheduler);
+  injector.registerSingleton(EnvironmentService);
 
   // metier
   injector.registerSingleton(ScoresService);
