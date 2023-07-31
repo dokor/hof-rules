@@ -27,8 +27,8 @@ export default function SearchComponent() {
         <input type="text" placeholder="Search for a user" onChange={(e) => setInputText(e.target.value)} />
       </div>
       {
-        inputText &&
-        <>
+        inputText
+        && <>
           {userProfileFirst
             ? <div>
               <div>Season 1</div>
