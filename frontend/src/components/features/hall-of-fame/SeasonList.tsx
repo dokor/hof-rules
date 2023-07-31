@@ -13,6 +13,7 @@ type Props = {
 export default function SeasonList({ season }: Props) {
   const scoresService: ScoresService = getGlobalInstance(ScoresService);
   const seasonListOfUsers: UserProfile[] = useObservable(scoresService.fetchScores(season));
+
   const seasonName: string = season === Season.C_SCORE_SEASON_1 ? 'Saison 1' : 'Saison 2';
 
   return (
@@ -29,7 +30,7 @@ export default function SeasonList({ season }: Props) {
                 />
               ),
             )
-            : <div>Chargement...</div>
+            : <div>Chargement...</div> // todo : gérer avec le loader de l'app
         }
       </div>
     </div>

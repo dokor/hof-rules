@@ -2,6 +2,9 @@ import React from 'react';
 import SeasonList from './SeasonList';
 import Season from '../../../api/scores/types/Season';
 
+/**
+ * Gestion de la page du hall of fame
+ */
 export default function HallOfFamePage() {
   return (
     <div className="hof-page">

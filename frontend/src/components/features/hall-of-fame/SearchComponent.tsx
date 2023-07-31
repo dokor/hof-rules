@@ -21,6 +21,8 @@ export default function SearchComponent() {
 
   useOnDependenciesChange(() => userRank(), [inputText]);
 
+  // todo : clean le composant
+
   return (
     <>
       <div>
