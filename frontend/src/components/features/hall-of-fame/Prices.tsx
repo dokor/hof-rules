@@ -8,10 +8,21 @@ export default function Prices() {
   const gasPrice: number | undefined = useObservable(gasService.getGasPrice());
   const ethPrice: number | undefined = useObservable(gasService.getEthPrice());
 
+  /**
+   * Clean the eth price to have only 2 decimals
+   * @param price
+   */
+  function cleanEthPrice(price: number | undefined): number | undefined {
+    if (price) {
+      return Math.round(price * 100) / 100;
+    }
+    return undefined;
+  }
+
   return (
     <div>
-      <div>Gas : {gasPrice ?? ''} </div>
-      <div>Eth : {ethPrice ?? ''} €</div>
+      {gasPrice && (<div>Gas : {gasPrice} </div>)}
+      {ethPrice && (<div>Eth : {cleanEthPrice(ethPrice)} €</div>)}
     </div>
   );
 }
