@@ -8,8 +8,10 @@ type Props = {
 
 const URSER_URL_RULES = 'https://rules.art/user/';
 
+const HEIGHT = 34;
+
 const computeProfileImage = (pictureUrl: string, fallbackUrl: string) => (
-  <img width={34} height={34}
+  <img width={HEIGHT} height={HEIGHT}
        src={pictureUrl}
        loading="lazy"
        onError={() => `this.onerror=null;this.src=${fallbackUrl}`}
