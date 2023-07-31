@@ -11,6 +11,7 @@ import Login from './features/login/Login';
 import GlobalErrorBoundary from './theme/GlobalErrorBoundary';
 import SessionService from '../services/session/SessionService';
 import HallOfFamePage from './features/hall-of-fame/HallOfFamePage';
+import SearchHeader from './layout/SearchHeader';
 
 const logger = new Logger('App');
 // To make the application have a base path that starts with /admin:
@@ -30,6 +31,7 @@ export default function App() {
     <GlobalErrorBoundary>
       <ToastContainer />
       <Header />
+      <SearchHeader />
       <BrowserRouter basename={basePath}>
         <Routes>
           <Route path="*" element={<HallOfFamePage />} />

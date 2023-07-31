@@ -66,3 +66,14 @@
   border-bottom: $separator;
   margin-bottom: $spacer-3;
 }
+
+.sub-header_actions {
+  display: flex;
+  height: 100%;
+  margin-right: auto;
+  flex-direction: row;
+
+  div {
+    margin-left: 1rem;
+  }
+}

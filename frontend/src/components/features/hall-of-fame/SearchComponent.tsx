@@ -22,13 +22,16 @@ export default function SearchComponent() {
   useOnDependenciesChange(() => userRank(), [inputText]);
 
   return (
-    <div>
+    <>
       <div>
         <input type="text" placeholder="Search for a user" onChange={(e) => setInputText(e.target.value)} />
       </div>
       <>
         {userProfileFirst
-          ? <UserTile userProfile={userProfileFirst} />
+          ? <div>
+            <div>Season 1</div>
+            <UserTile userProfile={userProfileFirst} />
+          </div>
           : (
             <>
               <Skeleton variant="rectangular" width={150} height={40} sx={{ bgcolor: 'grey.900' }} />
@@ -37,10 +40,13 @@ export default function SearchComponent() {
           )
         }
         {userProfileSecond
-          ? <UserTile userProfile={userProfileSecond} />
+          ? <div>
+            <div>Season 2</div>
+            <UserTile userProfile={userProfileSecond} />
+          </div>
           : <Skeleton variant="rectangular" width={150} height={40} sx={{ bgcolor: 'grey.900' }} />
         }
       </>
-    </div>
+    </>
   );
 }
