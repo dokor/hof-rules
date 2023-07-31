@@ -5,6 +5,8 @@ import javax.inject.Singleton;
 
 import com.typesafe.config.Config;
 
+import java.time.Duration;
+
 @Singleton
 public class ConfigurationService {
 
@@ -13,10 +15,6 @@ public class ConfigurationService {
 	@Inject
 	public ConfigurationService(Config config) {
 		this.config = config;
-	}
-
-	public String hello() {
-		return config.getString("hello");
 	}
 
 	public String swaggerAccessUsername() {
@@ -29,6 +27,9 @@ public class ConfigurationService {
 
     public Integer getNumberOfUsersShow() {
 		return config.getInt("show.number-of-users");
+    }
+    public Duration getScheduleRefreshUsersTiming() {
+		return config.getDuration("schedule.jobs.refresh-users.timing");
     }
 }
 
