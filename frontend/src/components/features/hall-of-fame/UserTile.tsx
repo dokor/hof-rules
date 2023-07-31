@@ -1,5 +1,5 @@
 import React from 'react';
-import {UserProfile} from '../../../api/scores/ScoresApi';
+import { UserProfile } from '../../../api/scores/ScoresApi';
 import RankTile from './RankTile';
 
 type Props = {
@@ -12,12 +12,13 @@ const computeProfileImage = (pictureUrl: string, fallbackUrl: string) => (
   <img width={34} height={34}
        src={pictureUrl}
        onError={() => `this.onerror=null;this.src=${fallbackUrl}`}
+       alt={'user profile picture'}
   />);
-export default function UserTile({userProfile}: Props) {
+export default function UserTile({ userProfile }: Props) {
   return (
     <div className="user-tile">
       <div className="user-tile-title">
-        <RankTile rank={userProfile.rank}/>
+        <RankTile rank={userProfile.rank} />
       </div>
       <div className="user-tile-content">
         <div>

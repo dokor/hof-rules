@@ -7,7 +7,7 @@ import Season from '../../../api/scores/types/Season';
 import Prices from './Prices';
 
 export default function HallOfFamePage() {
-  const scoresService = getGlobalInstance(ScoresService);
+  const scoresService: ScoresService = getGlobalInstance(ScoresService);
 
   return (
     <div className="hof-page">

@@ -11,15 +11,16 @@ type Props = {
 };
 
 export default function SeasonList({ season }: Props) {
-  const scoresService = getGlobalInstance(ScoresService);
-  const seasonListOfUsers = useObservable(scoresService.fetchScores(season));
+  const scoresService: ScoresService = getGlobalInstance(ScoresService);
+  const seasonListOfUsers: UserProfile[] = useObservable(scoresService.fetchScores(season));
   const seasonName: string = season === Season.C_SCORE_SEASON_1 ? 'Saison 1' : 'Saison 2';
   return (
     <div className="hof-season">
       <h1>{seasonName}</h1>
       <div>
         {
-          seasonListOfUsers && seasonListOfUsers?.map(
+          seasonListOfUsers
+          && seasonListOfUsers?.map(
             (userProfile: UserProfile) => (
               <UserTile
                 key={`${season}-${userProfile.slug}`}

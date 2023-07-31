@@ -5,6 +5,9 @@ type Props = {
 };
 
 export default function RankTile({ rank }: Props) {
+  /**
+   * Compute the wording for the rank
+   */
   function computeRankWording(): string {
     if (rank === '1') {
       return 'er';
@@ -12,6 +15,9 @@ export default function RankTile({ rank }: Props) {
     return 'éme';
   }
 
+  /**
+   * Compute the CSS class for the rank
+   */
   function computeClass(): string {
     const rankNum: number = Number(rank);
     if (rankNum <= 5) {
