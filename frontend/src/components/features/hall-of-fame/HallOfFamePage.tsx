@@ -4,6 +4,7 @@ import ScoresService from '../../../services/scores/ScoresService';
 import SeasonList from './SeasonList';
 import SearchComponent from './SearchComponent';
 import Season from '../../../api/scores/types/Season';
+import Prices from './Prices';
 
 export default function HallOfFamePage() {
   const scoresService = getGlobalInstance(ScoresService);
@@ -11,6 +12,7 @@ export default function HallOfFamePage() {
   return (
     <div className="hof-page">
       <button onClick={() => scoresService.refresh()}>Refresh ALL</button>
+      <Prices />
       <SearchComponent />
       <div className="hof-seasons">
         <SeasonList season={Season.C_SCORE_SEASON_1} />

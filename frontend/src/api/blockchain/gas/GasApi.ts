@@ -1,4 +1,4 @@
-import ApiHttpClient from '../ApiHttpClient';
+import ApiHttpClient from '../../ApiHttpClient';
 
 const giftGasUsage = 5009;
 const sellGasUsage = 4987;
@@ -10,11 +10,13 @@ export default class GasApi {
   ) {
   }
 
+  // eslint-disable-next-line class-methods-use-this
   async fetchEthPrice() {
     return fetch('https://api.coinbase.com/v2/prices/ETH-EUR/spot')
       .then((response) => response.json());
   }
 
+  // eslint-disable-next-line class-methods-use-this
   async fetchGasPrice() {
     return fetch('https://alpha-mainnet.starknet.io/feeder_gateway/get_block?blockNumber=pending')
       .then((response) => response.json());

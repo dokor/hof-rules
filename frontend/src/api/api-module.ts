@@ -4,7 +4,7 @@ import ApiHttpClientAuthenticated from './ApiHttpClientAuthenticated';
 import SessionApi from './session/SessionApi';
 import PlumeAdminHttpClient from '../lib/plume-admin-api/PlumeHttpClient';
 import ScoresApi from './scores/ScoresApi';
-import GasApi from './blockchain/GasApi';
+import GasApi from './blockchain/gas/GasApi';
 
 export default function installApiModule(injector: Injector) {
   injector.registerSingleton(ApiHttpClient);
