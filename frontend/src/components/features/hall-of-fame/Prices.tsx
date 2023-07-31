@@ -2,6 +2,7 @@ import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
 import { useObservable } from 'micro-observables';
 import GasService from '../../../services/blockchain/GasService';
+import { buyGasUsage, giftGasUsage, sellGasUsage } from '../../../api/blockchain/gas/GasApi';
 
 export default function Prices() {
   const gasService: GasService = getGlobalInstance(GasService);
@@ -21,7 +22,9 @@ export default function Prices() {
 
   return (
     <div>
-      {gasPrice && (<div>Gas : {gasPrice} </div>)}
+      {gasPrice && ethPrice && (<div>Gas Envoie : {(gasPrice * giftGasUsage * ethPrice).toFixed(2)} €</div>)}
+      {gasPrice && ethPrice && (<div>Gas Vente : {(gasPrice * sellGasUsage * ethPrice).toFixed(2)} €</div>)}
+      {gasPrice && ethPrice && (<div>Gas Achat : {(gasPrice * buyGasUsage * ethPrice).toFixed(2)} €</div>)}
       {ethPrice && (<div>Eth : {cleanEthPrice(ethPrice)} €</div>)}
     </div>
   );

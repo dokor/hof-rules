@@ -1,8 +1,8 @@
 import ApiHttpClient from '../../ApiHttpClient';
 
-const giftGasUsage = 5009;
-const sellGasUsage = 4987;
-const buyGasUsage = 13682;
+export const giftGasUsage = 5009;
+export const sellGasUsage = 4987;
+export const buyGasUsage = 13682;
 
 export default class GasApi {
   constructor(

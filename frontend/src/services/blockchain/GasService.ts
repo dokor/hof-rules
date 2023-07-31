@@ -18,7 +18,11 @@ export default class GasService {
 
   fetchGasPrice(): void {
     this.gasApi.fetchGasPrice()
-      .then((response) => this.gasPrice.set(parseInt(response.gas_price, 16)));
+      .then((response) => {
+        let gasPrice: number = parseInt(response.gas_price, 16);
+        gasPrice /= 10 ** 18;
+        this.gasPrice.set(gasPrice);
+      });
   }
 
   fetchEthPrice(): void {

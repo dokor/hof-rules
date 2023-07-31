@@ -11,11 +11,12 @@ const URSER_URL_RULES = 'https://rules.art/user/';
 const HEIGHT = 34;
 
 const computeProfileImage = (pictureUrl: string, fallbackUrl: string) => (
+  // eslint-disable-next-line jsx-a11y/img-redundant-alt
   <img width={HEIGHT} height={HEIGHT}
        src={pictureUrl}
        loading="lazy"
        onError={() => `this.onerror=null;this.src=${fallbackUrl}`}
-       alt={'user profile picture'}
+       alt={'profile picture'}
   />);
 export default function UserTile({ userProfile }: Props) {
   return (
