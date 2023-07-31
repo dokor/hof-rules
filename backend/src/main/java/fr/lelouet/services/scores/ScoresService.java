@@ -18,7 +18,7 @@ public class ScoresService {
     private static final Logger logger = LoggerFactory.getLogger(ScoresService.class);
 
 
-    private Map<RulesSaison, List<UserScore>> cachedScores = new HashMap<>();
+    private final Map<RulesSaison, List<UserScore>> cachedScores = new HashMap<>();
     private final QraphqlApi graphQLApi;
 
     @Inject
@@ -30,14 +30,16 @@ public class ScoresService {
 
     public Map<RulesSaison, List<UserScore>> initializeCache() {
         logger.info("INIT Scores cache");
-        List<UserScore> firstSaison = graphQLApi.fetchScores(RulesSaison.C_SCORE_SEASON_1);
-        List<UserScore> secondSaison = graphQLApi.fetchScores(RulesSaison.C_SCORE_SEASON_2);
-        Map<RulesSaison, List<UserScore>> map = new HashMap<>();
-        map.put(RulesSaison.C_SCORE_SEASON_1, firstSaison);
-        map.put(RulesSaison.C_SCORE_SEASON_2, secondSaison);
+        this.initializeCacheSeason(RulesSaison.C_SCORE_SEASON_1);
+        this.initializeCacheSeason(RulesSaison.C_SCORE_SEASON_2);
         logger.info("Scores cache initialized");
-        this.cachedScores = map;
-        return map;
+        return this.cachedScores;
+    }
+
+    private void initializeCacheSeason(RulesSaison saison) {
+        List<UserScore> seasonScores = graphQLApi.fetchScores(saison);
+        logger.info("Scores cache initialized for [{}]", saison.name());
+        this.cachedScores.put(saison, seasonScores);
     }
 
     public List<UserScore> getScores(RulesSaison saison) {
