@@ -20,11 +20,22 @@ export default function Prices() {
     return undefined;
   }
 
+  /**
+   * Calculate the gas price for each type of transaction
+   * @param gasUsage
+   */
+  function calculateGasPrice(gasUsage: number): string | undefined {
+    if (gasPrice && ethPrice) {
+      return (gasPrice * gasUsage * ethPrice).toFixed(2);
+    }
+    return undefined;
+  }
+
   return (
     <div>
-      {gasPrice && ethPrice && (<div>Gas Envoie : {(gasPrice * giftGasUsage * ethPrice).toFixed(2)} €</div>)}
-      {gasPrice && ethPrice && (<div>Gas Vente : {(gasPrice * sellGasUsage * ethPrice).toFixed(2)} €</div>)}
-      {gasPrice && ethPrice && (<div>Gas Achat : {(gasPrice * buyGasUsage * ethPrice).toFixed(2)} €</div>)}
+      {gasPrice && ethPrice && (<div>Gas Envoie : {calculateGasPrice(giftGasUsage)} €</div>)}
+      {gasPrice && ethPrice && (<div>Gas Vente : {calculateGasPrice(sellGasUsage)} €</div>)}
+      {gasPrice && ethPrice && (<div>Gas Achat : {calculateGasPrice(buyGasUsage)} €</div>)}
       {ethPrice && (<div>Eth : {cleanEthPrice(ethPrice)} €</div>)}
     </div>
   );
