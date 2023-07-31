@@ -11,6 +11,7 @@ const URSER_URL_RULES = 'https://rules.art/user/';
 const computeProfileImage = (pictureUrl: string, fallbackUrl: string) => (
   <img width={34} height={34}
        src={pictureUrl}
+       loading="lazy"
        onError={() => `this.onerror=null;this.src=${fallbackUrl}`}
        alt={'user profile picture'}
   />);
