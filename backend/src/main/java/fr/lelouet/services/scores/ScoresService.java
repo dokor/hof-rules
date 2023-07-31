@@ -40,10 +40,6 @@ public class ScoresService {
         return map;
     }
 
-
-    // TODO : ajouter un job pour raffraichir le cache des scores
-    // TODO : faire un endpoint pour raffraichir le cache des scores
-
     public List<UserScore> getScores(RulesSaison saison) {
         // TODO : modifier l'appel et l'objet pour renvoyer une map<Position, UserScore>
         return this.cachedScores.get(saison);

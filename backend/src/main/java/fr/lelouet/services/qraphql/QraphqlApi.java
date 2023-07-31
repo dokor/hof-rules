@@ -1,13 +1,9 @@
 package fr.lelouet.services.qraphql;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.lelouet.services.scores.enums.RulesSaison;
 import fr.lelouet.services.scores.beans.UserScore;
 
 import java.util.Collections;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -16,7 +12,6 @@ import java.util.List;
 @Singleton
 public class QraphqlApi {
 
-    private static final Logger logger = LoggerFactory.getLogger(QraphqlApi.class);
     private final FetchData fetchData;
 
     @Inject

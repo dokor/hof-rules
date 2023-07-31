@@ -1,6 +1,5 @@
 package fr.lelouet.services.scores.beans;
 
-import fr.lelouet.services.scores.beans.Profile;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

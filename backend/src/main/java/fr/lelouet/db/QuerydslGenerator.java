@@ -22,65 +22,61 @@ import com.querydsl.sql.types.Type;
 
 /**
  * Generate Querydsl classes for the database layer.
- *
+ * <p>
  * Run the {@link #main()} method from your IDE to regenerate Querydsl classes.
  */
 public class QuerydslGenerator {
 
-	private static final String TABLES_PREFIX = "plm_";
+    private static final String TABLES_PREFIX = "plm_";
 
-	public static void main(String... args) {
-		Configuration configuration = new Configuration(SQLTemplates.DEFAULT);
-		configuration.register(classType(JSR310InstantType.class));
-		configuration.register(classType(JSR310LocalDateType.class));
-		configuration.register(classType(JSR310LocalTimeType.class));
-		configuration.register(classType(JSR310ZonedDateTimeType.class));
-		configuration.registerNumeric(1, 0, Boolean.class);
-		configuration.registerNumeric(9, 0, Long.class);
-		configuration.registerNumeric(19, 0, Long.class);
+    public static void main(String... args) {
+        Configuration configuration = new Configuration(SQLTemplates.DEFAULT);
+        configuration.register(classType(JSR310InstantType.class));
+        configuration.register(classType(JSR310LocalDateType.class));
+        configuration.register(classType(JSR310LocalTimeType.class));
+        configuration.register(classType(JSR310ZonedDateTimeType.class));
+        configuration.registerNumeric(1, 0, Boolean.class);
+        configuration.registerNumeric(9, 0, Long.class);
+        configuration.registerNumeric(19, 0, Long.class);
 
-		MetaDataExporter exporter = new MetaDataExporter();
-		exporter.setPackageName("fr.lelouet.db.generated");
-		exporter.setTargetFolder(new File("src/main/java"));
-		exporter.setTableNamePattern(TABLES_PREFIX + "%");
-		exporter.setNamingStrategy(new DefaultNamingStrategy() {
-			@Override
-			public String getClassName(String tableName) {
-				// uncomment if you are using plume file
-//				if("plm_file".equalsIgnoreCase(tableName)) {
-//					return FileEntityQuerydsl.class.getName();
-//				}
-				return super.getClassName(tableName.substring(TABLES_PREFIX.length()));
-			}
+        MetaDataExporter exporter = new MetaDataExporter();
+        exporter.setPackageName("fr.lelouet.db.generated");
+        exporter.setTargetFolder(new File("src/main/java"));
+        exporter.setTableNamePattern(TABLES_PREFIX + "%");
+        exporter.setNamingStrategy(new DefaultNamingStrategy() {
+            @Override
+            public String getClassName(String tableName) {
+                return super.getClassName(tableName.substring(TABLES_PREFIX.length()));
+            }
 
-			@Override
-			public String getDefaultVariableName(EntityType entityType) {
-				String variableName = getClassName(entityType.getData().get("table").toString());
-				return variableName.substring(0, 1).toLowerCase(Locale.ENGLISH) + variableName.substring(1);
-			}
-		});
-		IdBeanSerializer beanSerializer = new IdBeanSerializer().setUseJacksonAnnotation(true);
-		beanSerializer.setAddToString(true);
-		exporter.setBeanSerializer(beanSerializer);
-		exporter.setColumnAnnotations(true);
-		exporter.setConfiguration(configuration);
+            @Override
+            public String getDefaultVariableName(EntityType entityType) {
+                String variableName = getClassName(entityType.getData().get("table").toString());
+                return variableName.substring(0, 1).toLowerCase(Locale.ENGLISH) + variableName.substring(1);
+            }
+        });
+        IdBeanSerializer beanSerializer = new IdBeanSerializer().setUseJacksonAnnotation(true);
+        beanSerializer.setAddToString(true);
+        exporter.setBeanSerializer(beanSerializer);
+        exporter.setColumnAnnotations(true);
+        exporter.setConfiguration(configuration);
 
-		Injector injector = Guice.createInjector(new GuiceConfModule());
-		injector.getInstance(TransactionManager.class).execute(connection -> {
-			try {
-				exporter.export(connection.getMetaData());
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		});
-	}
+        Injector injector = Guice.createInjector(new GuiceConfModule());
+        injector.getInstance(TransactionManager.class).execute(connection -> {
+            try {
+                exporter.export(connection.getMetaData());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+    }
 
-	private static Type<?> classType(Class<?> classType) {
-		try {
-			return (Type<?>) classType.getConstructor().newInstance();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
+    private static Type<?> classType(Class<?> classType) {
+        try {
+            return (Type<?>) classType.getConstructor().newInstance();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
