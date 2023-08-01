@@ -33,11 +33,26 @@ public class ScoresService {
         this.initializeCacheSeason(RulesSaison.C_SCORE_SEASON_1);
         this.initializeCacheSeason(RulesSaison.C_SCORE_SEASON_2);
         logger.info("Scores cache initialized");
+        this.calculateAllTimes();
         return this.cachedScores;
+    }
+
+    private void calculateAllTimes() {
+        this.calculateAllTimeRank();
+        this.calculateAllTimeScore();
+    }
+
+    private void calculateAllTimeScore() {
+        // todo : calculer une liste triée en se basant sur la somme des scores de chaque season
+    }
+
+    private void calculateAllTimeRank() {
+        // todo : calculer une liste triée en se basant sur la moyenne du rank de chaque season
     }
 
     private void initializeCacheSeason(RulesSaison saison) {
         List<UserScore> seasonScores = graphQLApi.fetchScores(saison);
+        // TODO : Double tri pour etre sur d'avoir un tri par rank croissant
         logger.info("Scores cache initialized for [{}]", saison.name());
         this.cachedScores.put(saison, seasonScores);
     }
