@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ public class ScoresService {
 
 
     private final Map<RulesSaison, List<UserScore>> cachedScores = new HashMap<>();
+    private Instant lastUpdateOfCache = null;
     private final QraphqlApi graphQLApi;
 
     @Inject
@@ -34,6 +36,7 @@ public class ScoresService {
         this.initializeCacheSeason(RulesSaison.C_SCORE_SEASON_2);
         logger.info("Scores cache initialized");
         this.calculateAllTimes();
+        this.lastUpdateOfCache = Instant.now();
         return this.cachedScores;
     }
 
@@ -62,7 +65,19 @@ public class ScoresService {
         return this.cachedScores.get(saison);
     }
 
-    public void refresh() {
+    /**
+     * Raffraichis l'ensemble du cache des scores
+     * @return : L'instant correspondant à la derniere mise à jour du cache
+     */
+    public Instant refresh() {
         this.initializeCache();
+        return this.lastUpdateOfCache;
+    }
+
+    /**
+     * @return : L'instant correspondant à la derniere mise à jour du cache
+     */
+    public Instant getLastUpdateInstant() {
+        return this.lastUpdateOfCache;
     }
 }

@@ -19,6 +19,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.time.Instant;
 import java.util.List;
 
 @Path("/scores")
@@ -50,8 +51,15 @@ public class ScoresWs {
     @POST
     @Path("/refresh")
     @Operation(description = "Refresh all Seasons")
-    public void refreshSeasonsScores() {
-        scoresService.refresh();
+    public Instant refreshSeasonsScores() {
+        return scoresService.refresh();
+    }
+
+    @GET
+    @Path("/refresh/last-update")
+    @Operation(description = "Return the time of the last update of score cache")
+    public Instant getRefreshLastUpdate(){
+        return scoresService.getLastUpdateInstant();
     }
 
     /**
