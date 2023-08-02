@@ -6,7 +6,7 @@ import SearchComponent from '../features/hall-of-fame/SearchComponent';
  */
 export default function SearchHeader() {
   return (
-    <header id="main-header">
+    <header id="sub-header">
       <div className="sub-header_actions">
         <SearchComponent />
       </div>

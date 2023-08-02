@@ -1,12 +1,23 @@
 @use "../variables" as *;
 
-#main-header {
+#sub-header {
   display: flex;
   align-items: center;
   height: $height-header;
   border-bottom: $separator;
   background: $background;
   color: #e3ebf2;
+
+  .sub-header_actions {
+    display: flex;
+    height: 100%;
+    margin-right: auto;
+    flex-direction: row;
+
+    div {
+      margin-left: 1rem;
+    }
+  }
 
   h1 {
     padding: $spacer-4 0;
@@ -66,11 +77,5 @@
   }
 }
 
-#user-name {
-  color: $gray-dark;
-  min-width: 75px;
-  text-align: center;
-  padding: 0 $spacer-4 $spacer-2 $spacer-4;
-  border-bottom: $separator;
-  margin-bottom: $spacer-3;
-}
+
+
