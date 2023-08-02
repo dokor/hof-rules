@@ -1,13 +1,11 @@
 import React from 'react';
 import { UserProfile } from '../../../api/scores/ScoresApi';
 import RankTile from './RankTile';
+import UserNameLink from './UserNameLink';
 
 type Props = {
   userProfile: UserProfile;
 };
-
-// Url des profils de rules
-const USER_URL_RULES = 'https://rules.art/user/';
 
 // Hauteur / Largeur de la photo de profil
 const HEIGHT = 34;
@@ -40,7 +38,10 @@ export default function UserTile({ userProfile }: Props) {
         </div>
         <div>
           <div>
-            <a href={USER_URL_RULES + userProfile.slug} target="_blank" rel="noreferrer">{userProfile.username}</a>
+            <UserNameLink
+              username={userProfile.username}
+              userSlug={userProfile.slug}
+            />
           </div>
           <div>Score : {userProfile.cscore}</div>
         </div>

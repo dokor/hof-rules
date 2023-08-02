@@ -4,6 +4,7 @@ import { useObservable } from 'micro-observables';
 import Prices from '../features/hall-of-fame/Prices';
 import ScoresService from '../../services/scores/ScoresService';
 import EnvironmentService, { ScreenSize } from '../../services/utils/EnvironmentService';
+import UserNameLink from '../features/hall-of-fame/UserNameLink';
 
 export default function Header() {
   const scoresService: ScoresService = getGlobalInstance(ScoresService);
@@ -13,7 +14,13 @@ export default function Header() {
 
   return (
     <header id="main-header">
-      {screenSize.isDesktop && <h1 className="section_name">Hof-rules by lelouet</h1>}
+      {screenSize.isDesktop
+        && (<h1 className="section_name">Hof-rules by
+          {<UserNameLink
+            username='Dokor'
+            userSlug='dokor'
+          />}
+        </h1>)}
       <div className="header_actions">
         <div className="header_action">
           <Prices />
