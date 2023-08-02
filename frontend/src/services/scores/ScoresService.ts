@@ -15,9 +15,9 @@ export default class ScoresService {
     this.firstSeasonScores = observable([]);
     this.secondSesonScores = observable([]);
     this.lastTimeRefreshed = observable(undefined);
-    this.init(Season.SEASON_1);
-    this.init(Season.SEASON_2);
-    this.lastTimeRefreshed.set(new Date());
+    this.initAllSeasons();
+    this.scoresApi.getLastTimeUpdateScore()
+      .then((response: Date) => this.lastTimeRefreshed.set(response));
   }
 
   fetchScores(season: Season) {
@@ -27,20 +27,17 @@ export default class ScoresService {
     return this.secondSesonScores.readOnly();
   }
 
-  init(season: Season) {
-    if (season === Season.SEASON_1) {
-      return this.scoresApi.fetchScores(season)
-        .then((scores: UserProfile[]) => this.firstSeasonScores.set(scores));
-    }
-    return this.scoresApi.fetchScores(season)
+  initAllSeasons() {
+    this.scoresApi.fetchScores(Season.SEASON_1)
+      .then((scores: UserProfile[]) => this.firstSeasonScores.set(scores));
+    this.scoresApi.fetchScores(Season.SEASON_2)
       .then((scores: UserProfile[]) => this.secondSesonScores.set(scores));
   }
 
   refresh() {
     this.scoresApi.refresh()
       .then((response: Date) => {
-        this.init(Season.SEASON_1);
-        this.init(Season.SEASON_2);
+        this.initAllSeasons();
         this.lastTimeRefreshed.set(response);
       });
   }
@@ -49,6 +46,7 @@ export default class ScoresService {
     return this.lastTimeRefreshed.readOnly();
   }
 
+  // todo : passer le cache dans un MAP<Season, Map<slug, UserProfile>> pour gagner en qualité
   getUserRank(slug: string, season: Season): UserProfile | undefined {
     if (season === Season.SEASON_1 && this.firstSeasonScores.get() !== undefined) {
       const firstSeason: UserProfile | undefined = this.firstSeasonScores.get()

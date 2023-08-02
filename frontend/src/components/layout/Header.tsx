@@ -1,6 +1,7 @@
 import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
 import { useObservable } from 'micro-observables';
+import dayjs from 'dayjs';
 import Prices from '../features/hall-of-fame/Prices';
 import ScoresService from '../../services/scores/ScoresService';
 import EnvironmentService, { ScreenSize } from '../../services/utils/EnvironmentService';
@@ -26,8 +27,13 @@ export default function Header() {
           <Prices />
         </div>
         <div className="header_action">
-          <button onClick={() => scoresService.refresh()}>Refresh ALL</button>
-          {lastTimeRefreshed && (<div>{lastTimeRefreshed.toUTCString()}</div>)}
+          {lastTimeRefreshed
+            && <button onClick={() => scoresService.refresh()}
+                       title={dayjs(lastTimeRefreshed).toString()}
+            >
+              Refresh
+            </button>
+          }
         </div>
       </div>
     </header>
