@@ -3,7 +3,7 @@
 #sub-header {
   display: flex;
   align-items: center;
-  height: $height-header;
+  height: $sub-height-header;
   border-bottom: $separator;
   background: $background;
   color: #e3ebf2;
@@ -12,19 +12,16 @@
     display: flex;
     height: 100%;
     margin-right: auto;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    width: 100%;
 
-    div {
-      margin-left: 1rem;
-    }
   }
 
-  h1 {
-    padding: $spacer-4 0;
-    text-transform: uppercase;
-    margin-left: $spacer-6;
-    font-size: $font-size-large;
-    color: #e3ebf2;
+  .search-input {
+    margin: 0 auto;
+    padding: 1rem;
   }
 
   .section_name {
@@ -38,41 +35,20 @@
   .header_actions {
     display: flex;
     height: 100%;
-    margin-left: auto;
+    margin: 0 auto;
 
     .header_action {
       display: flex;
       align-items: center;
       height: 100%;
       padding: 0 $spacer-5;
-      border-left: $separator;
-      //color: $secondary-color;
 
-      button {
-        font-size: $font-size-medium;
-
-        .MuiIcon-root {
-          margin-right: $spacer-2;
-        }
+      // todo : rename la class
+      .user-tile-with-season {
+        display: flex;
+        flex-direction: column;
       }
 
-      &--circle {
-        button {
-          min-width: unset;
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          color: $secondary-color;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: $gray-lighter;
-
-          span {
-            display: none;
-          }
-        }
-      }
     }
   }
 }
