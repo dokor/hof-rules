@@ -2,9 +2,9 @@ package fr.lelouet.webservices.front;
 
 import com.coreoz.plume.jersey.errors.WsException;
 import com.coreoz.plume.jersey.security.permission.PublicApi;
-import fr.lelouet.services.scores.enums.RulesSaison;
 import fr.lelouet.services.scores.ScoresService;
 import fr.lelouet.services.scores.beans.UserScore;
+import fr.lelouet.services.scores.enums.RulesScoreType;
 import fr.lelouet.webservices.internal.HofWsError;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -44,7 +44,7 @@ public class ScoresWs {
     @Operation(description = "Get Scores by season")
     public List<UserScore> get(@Parameter(required = true) @PathParam("season") String season) {
         this.validateSeason(season);
-        RulesSaison rulesSaison = RulesSaison.valueOf(season);
+        RulesScoreType rulesSaison = RulesScoreType.valueOf(season);
         return scoresService.getScores(rulesSaison);
     }
 

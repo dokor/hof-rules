@@ -14,7 +14,7 @@ export default function SeasonList({ season }: Props) {
   const scoresService: ScoresService = getGlobalInstance(ScoresService);
   const seasonListOfUsers: UserProfile[] = useObservable(scoresService.fetchScores(season));
 
-  const seasonName: string = season === Season.C_SCORE_SEASON_1 ? 'Saison 1' : 'Saison 2';
+  const seasonName: string = season === Season.SEASON_1 ? 'Saison 1' : 'Saison 2';
 
   return (
     <div className="hof-season">

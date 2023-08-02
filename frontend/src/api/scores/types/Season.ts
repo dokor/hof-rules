@@ -1,6 +1,8 @@
 enum Season {
-  C_SCORE_SEASON_1 = 'C_SCORE_SEASON_1',
-  C_SCORE_SEASON_2 = 'C_SCORE_SEASON_2',
+  ALL_TIME_SCORE = 'ALL_TIME_SCORE',
+  ALL_TIME_RANK = 'ALL_TIME_RANK',
+  SEASON_1 = 'SEASON_1',
+  SEASON_2 = 'SEASON_2',
 }
 
 export default Season;

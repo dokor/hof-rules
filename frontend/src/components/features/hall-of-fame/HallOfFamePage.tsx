@@ -9,8 +9,8 @@ export default function HallOfFamePage() {
   return (
     <div className="hof-page">
       <div className="hof-seasons">
-        <SeasonList season={Season.C_SCORE_SEASON_1} />
-        <SeasonList season={Season.C_SCORE_SEASON_2} />
+        <SeasonList season={Season.SEASON_1} />
+        <SeasonList season={Season.SEASON_2} />
       </div>
     </div>
   );

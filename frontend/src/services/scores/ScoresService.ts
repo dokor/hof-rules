@@ -12,19 +12,19 @@ export default class ScoresService {
   ) {
     this.firstSeasonScores = observable([]);
     this.secondSesonScores = observable([]);
-    this.init(Season.C_SCORE_SEASON_1);
-    this.init(Season.C_SCORE_SEASON_2);
+    this.init(Season.SEASON_1);
+    this.init(Season.SEASON_2);
   }
 
   fetchScores(season: Season) {
-    if (season === Season.C_SCORE_SEASON_1) {
+    if (season === Season.SEASON_1) {
       return this.firstSeasonScores.readOnly();
     }
     return this.secondSesonScores.readOnly();
   }
 
   init(season: Season) {
-    if (season === Season.C_SCORE_SEASON_1) {
+    if (season === Season.SEASON_1) {
       return this.scoresApi.fetchScores(season)
         .then((scores: UserProfile[]) => this.firstSeasonScores.set(scores));
     }
@@ -35,20 +35,20 @@ export default class ScoresService {
   refresh() {
     this.scoresApi.refresh()
       .then(() => {
-        this.init(Season.C_SCORE_SEASON_1);
-        this.init(Season.C_SCORE_SEASON_2);
+        this.init(Season.SEASON_1);
+        this.init(Season.SEASON_2);
       });
   }
 
   getUserRank(slug: string, season: Season): UserProfile | undefined {
-    if (season === Season.C_SCORE_SEASON_1) {
+    if (season === Season.SEASON_1) {
       const firstSeason: UserProfile | undefined = this.firstSeasonScores.get()
         .find((user: UserProfile) => user.slug === slug || user.username === slug);
       if (firstSeason) {
         return firstSeason;
       }
     }
-    if (season === Season.C_SCORE_SEASON_2) {
+    if (season === Season.SEASON_2) {
       const secondSeason: UserProfile | undefined = this.secondSesonScores.get()
         .find((user: UserProfile) => user.slug === slug || user.username === slug);
       if (secondSeason) {

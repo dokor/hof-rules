@@ -15,8 +15,8 @@ export default function SearchComponent() {
 
   function userRank(): void {
     if (inputText === undefined) return;
-    setUserProfileFirst(searchService.getUserRank(inputText, Season.C_SCORE_SEASON_1));
-    setUserProfileSecond(searchService.getUserRank(inputText, Season.C_SCORE_SEASON_2));
+    setUserProfileFirst(searchService.getUserRank(inputText, Season.SEASON_1));
+    setUserProfileSecond(searchService.getUserRank(inputText, Season.SEASON_2));
   }
 
   useOnDependenciesChange(() => userRank(), [inputText]);
