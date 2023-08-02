@@ -27,7 +27,14 @@ export default class ScoresApi {
   refresh() {
     return this
       .httpClient
-      .restRequest<void>(HttpMethod.POST, '/scores/refresh')
+      .restRequest<Date>(HttpMethod.POST, '/scores/refresh')
+      .execute();
+  }
+
+  getLastTimeUpdateScore() {
+    return this
+      .httpClient
+      .restRequest<Date>(HttpMethod.GET, '/scores/refresh/last-update')
       .execute();
   }
 }
