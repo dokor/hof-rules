@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.time.Instant;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,12 +57,12 @@ public class ScoresService {
 
     private void initializeCacheSeason(RulesScoreType rulesScoreType) {
         // Si la saison n'est pas définie, on ne fait rien
-        if(rulesScoreType.getSaison() == null) {
+        if (rulesScoreType.getSaison() == null) {
             return;
         }
         RulesSaison saison = rulesScoreType.getSaison();
         List<UserScore> seasonScores = graphQLApi.fetchScores(saison);
-        // TODO : Double tri pour etre sur d'avoir un tri par rank croissant
+        seasonScores.sort(Comparator.comparing(UserScore::getRank));
         logger.info("Scores cache initialized for [{}]", saison.name());
         this.cachedScores.put(rulesScoreType, seasonScores);
     }
