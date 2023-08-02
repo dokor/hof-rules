@@ -13,6 +13,14 @@ export default function Header() {
   const screenSize: ScreenSize = useObservable(environementService.screenSize());
   const lastTimeRefreshed: Date | undefined = useObservable(scoresService.getLastTimeRefreshed());
 
+  /**
+   * Afin d'éviter de spammer l'api de Rules, il n'est possible de raffraichir
+   * le cache des scores que toutes les 5 minutes
+   */
+  function canRefresh() {
+    return dayjs(lastTimeRefreshed).add(5, 'minute').isBefore(dayjs());
+  }
+
   return (
     <header id="main-header">
       {screenSize.isDesktop
@@ -27,7 +35,7 @@ export default function Header() {
           <Prices />
         </div>
         <div className="header_action">
-          {lastTimeRefreshed
+          {canRefresh()
             && <button onClick={() => scoresService.refresh()}
                        title={dayjs(lastTimeRefreshed).toString()}
             >

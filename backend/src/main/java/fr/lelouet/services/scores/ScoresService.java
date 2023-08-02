@@ -10,7 +10,8 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.time.Instant;
-import java.util.Comparator;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,8 +39,13 @@ public class ScoresService {
         this.initializeCacheSeason(RulesScoreType.SEASON_2);
         logger.info("Scores cache initialized");
         this.calculateAllTimes();
-        this.lastUpdateOfCache = Instant.now();
+        this.setLastUpdateOfCache();
         return this.cachedScores;
+    }
+
+    private void setLastUpdateOfCache() {
+        ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Europe/Paris"));
+        this.lastUpdateOfCache = zdt.toInstant();
     }
 
     private void calculateAllTimes() {
