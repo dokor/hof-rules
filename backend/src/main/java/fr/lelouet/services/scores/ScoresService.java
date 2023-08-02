@@ -62,7 +62,7 @@ public class ScoresService {
         }
         RulesSaison saison = rulesScoreType.getSaison();
         List<UserScore> seasonScores = graphQLApi.fetchScores(saison);
-        seasonScores.sort(Comparator.comparing(UserScore::getRank));
+        seasonScores.sort(UserScore::compareRank);
         logger.info("Scores cache initialized for [{}]", saison.name());
         this.cachedScores.put(rulesScoreType, seasonScores);
     }

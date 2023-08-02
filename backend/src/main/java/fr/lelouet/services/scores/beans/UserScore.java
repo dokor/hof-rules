@@ -15,4 +15,10 @@ public class UserScore {
     private String cScore;
     private String rank;
     private Profile profile;
+
+    public static int compareRank(UserScore score1, UserScore score2) {
+        Integer rank1 = Integer.parseInt(score1.getRank());
+        Integer rank2 = Integer.parseInt(score2.getRank());
+        return rank1.compareTo(rank2);
+    }
 }
